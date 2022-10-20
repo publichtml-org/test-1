@@ -1,0 +1,17 @@
+name: comment head sha
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+jobs:
+  comment_head_sha:
+    name: comment head sha
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo head sha
+        run: echo ${{ github.event.pull_request.head.sha }}
