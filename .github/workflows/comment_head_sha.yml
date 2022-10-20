@@ -14,4 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo head sha
-        run: echo ${{ github.event.pull_request.head.sha }}
+        run: |
+          echo ${{ github.event.pull_request.head.sha }}
+      - name: comment head sha
+        run: |
+          gh pr comment ${{ github.event.pull_request.html_url }} -b '${{ github.event.pull_request.head.sha }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
