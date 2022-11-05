@@ -1,0 +1,15 @@
+name: request reviews
+
+on:
+  pull_request:
+    types:
+      - review_requested
+
+jobs:
+  echo_head_ref:
+    name: echo_sha_on_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo sha
+        run: |
+          echo ${{ github.event.pull_request.head.sha }}
