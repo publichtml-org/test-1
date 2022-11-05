@@ -6,10 +6,11 @@ on:
       - review_requested
 
 jobs:
-  echo_head_ref:
-    name: echo_sha_on_push
+  echo_reviewers:
+    name: echo_reviewers
     runs-on: ubuntu-latest
     steps:
-      - name: echo sha
+      - name: echo reviewers
         run: |
-          echo ${{ github.event.pull_request.head.sha }}
+          echo ${{ toJSON(github.event.pull_request.requested_reviewers) }}
+          echo ${{ toJSON(github.event.pull_request.requested_teams) }}
