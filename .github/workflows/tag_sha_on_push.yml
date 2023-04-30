@@ -2,6 +2,8 @@ name: tag sha on push
 
 on:
   push:
+    branches:
+      - '*'
   workflow_dispatch:
     inputs:
       sha:
