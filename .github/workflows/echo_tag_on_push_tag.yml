@@ -1,0 +1,18 @@
+name: echo tag oh push tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  echo_tag_on_push_tag:
+    name: "Echo tag"
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo tag
+        run: |
+          echo ${{ github.ref_name }}
+      # - name: dump github context
+      #   run: |
+      #     echo ${{ toJson(github) }}

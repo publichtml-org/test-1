@@ -1,0 +1,24 @@
+name: tag sha on push
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Git SHA'
+        required: true
+
+jobs:
+  echo_head_ref:
+    name: echo_sha_on_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo sha
+        run: |
+          echo "${{ github.event.before }} -> ${{ github.event.after || github.event.inputs.sha }}"
+      - uses: actions/checkout@v3
+      - name: tag sha
+        run: |
+          git tag tag-${{ github.event.after || github.event.inputs.sha }}
+          git push origin tag-${{ github.event.after || github.event.inputs.sha }}
+
